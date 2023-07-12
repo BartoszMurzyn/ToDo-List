@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static("public"))
+app.use(express.static("public"));
 
 app.set('view engine', 'ejs');
 
@@ -37,10 +37,10 @@ app.post("/", function (req, res) {
         console.log(items);
         res.redirect("/");
     }
-})
+});
 
 app.get("/work", function (req, res) {
-    res.render("list", {listTitle: "Work", newItemsList: workItems})
+    res.render("list", {listTitle: "Work", newItemsList: workItems});
 });
 
 app.post("/work", function (req, res) {
@@ -48,6 +48,10 @@ app.post("/work", function (req, res) {
     workItems.push(item);
     res.redirect("/work");
 })
+
+app.get("/about", function (req, res) {
+    res.render("about");
+});
 
 app.listen(3000, function () {
     console.log("Server working");
